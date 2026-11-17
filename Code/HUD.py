@@ -12,17 +12,17 @@ PADDING = 25
 
 
 class hud:
-    def __init__(this, text: str):
+    def __init__(self, start_text: str):
         font = pygame.font.Font("freesansbold.ttf", 32)
-        this.font = font
-        text = font.render(text.rjust(6, "0"), True, white)
-        this.text = text
+        self.font = font
+        text = font.render(start_text.rjust(6, "0"), True, white)
+        self.text = text
         text_rect = text.get_rect()
-        this.text_rect = text_rect
-        this.text_rect.topleft = (PADDING, PADDING)
+        self.text_rect = text_rect
+        self.text_rect.topleft = (PADDING, PADDING)
 
-    def render(this, display: pygame.Surface):
-        display.blit(this.text, this.text_rect)
+    def render(self, display: pygame.Surface):
+        display.blit(self.text, self.text_rect)
 
-    def update(this,text):
-        this.text = this.font.render(text.rjust(6, "0"), True, white)
+    def update(self,text):
+        self.text = self.font.render(text.rjust(6, "0"), True, white)
