@@ -9,11 +9,11 @@ screen = pygame.display.set_mode((1920 , 1080))
 clock = pygame.time.Clock()
 running = True
 dt = 0
-
+score = 0
 
 print(pygame.key.get_repeat())
 player = player.Player(screen.get_height() / 4 *3, player.Position(screen.get_width()) )
-hud = HUD.hud()
+hud = HUD.hud(str(Score))
 
 while running:
     # poll for events
@@ -47,5 +47,6 @@ while running:
     # dt is delta time in seconds since last frame, used for framerate-
     # independent physics.
     dt = clock.tick(60) / 1000
+    score += dt
 
 pygame.quit()
