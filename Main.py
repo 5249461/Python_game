@@ -1,6 +1,6 @@
 # Example file showing a circle moving on screen
 import pygame
-import Code.Player as player
+import Code.Entity as entity
 import Code.HUD as HUD
 
 # pygame setup
@@ -10,9 +10,10 @@ clock = pygame.time.Clock()
 running = True
 dt = 0
 score = 0
-
+position = entity.Position(screen.get_width())
 print(pygame.key.get_repeat())
-player = player.Player(screen.get_height() / 4 *3, player.Position(screen.get_width()) )
+player = entity.Player(screen.get_height() / 4 *3, entity.Position(screen.get_width()) )
+entities = [player, entity.Enemy(screen.get_height()/2, position)] 
 hud = HUD.hud(str(score))
 
 while running:
@@ -21,24 +22,22 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.QUIT:
+            running = False
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_a:
-                player.location.left()
-            if event.key == pygame.K_d:
-                player.location.right()
             if event.key == pygame.K_x:
                 running = False
+            player.process_input(event)
 
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("purple")
-
-    pygame.draw.circle(screen, "red", player.player_pos, 40)
-
+    for current_entity in entities:
+        current_entity.process(screen)
+    
     hud.render(screen)
     
 
-    player.player_pos.x = player.location.positions[player.location.projected_pos]
     # flip() the display to put your work on screen
     pygame.display.flip()
 
