@@ -13,7 +13,7 @@ score = 0
 
 print(pygame.key.get_repeat())
 player = player.Player(screen.get_height() / 4 *3, player.Position(screen.get_width()) )
-hud = HUD.hud(str(Score))
+hud = HUD.hud(str(score))
 
 while running:
     # poll for events
@@ -28,8 +28,7 @@ while running:
                 player.location.right()
             if event.key == pygame.K_x:
                 running = False
-            if event.key == pygame.K_y:
-                text = hud.update("y")
+
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("purple")
@@ -47,6 +46,7 @@ while running:
     # dt is delta time in seconds since last frame, used for framerate-
     # independent physics.
     dt = clock.tick(60) / 1000
-    score += dt
+    score += int(1000*dt)
+    hud.update(str(score))
 
 pygame.quit()

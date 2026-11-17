@@ -12,10 +12,10 @@ PADDING = 25
 
 
 class hud:
-    def __init__(this):
+    def __init__(this, text: str):
         font = pygame.font.Font("freesansbold.ttf", 32)
         this.font = font
-        text = font.render("0000000", True, white)
+        text = font.render(text.rjust(6, "0"), True, white)
         this.text = text
         text_rect = text.get_rect()
         this.text_rect = text_rect
@@ -25,4 +25,4 @@ class hud:
         display.blit(this.text, this.text_rect)
 
     def update(this,text):
-        this.text = this.font.render(text, True, white)
+        this.text = this.font.render(text.rjust(6, "0"), True, white)
