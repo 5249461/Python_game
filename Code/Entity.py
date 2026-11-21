@@ -12,10 +12,11 @@ class Position:
 
 
 class Player:
-    
-    
+    def __init__(self, screen: pygame.Surface):
+        self.pos = pygame.Vector2(Position.get(1), (screen.get_height()/4) * 3)
+        self.current_pos = 1
     def process(self, screen): 
-
+        self.pos.x = Position.get(self.current_pos)
         # self.pos.x = Position.get(location)
         pygame.draw.circle(screen, "red", self.pos, 40)
 
@@ -41,10 +42,11 @@ class EnemyHandler:
     def __init__(self):
         self.enemies = []
         self.spawn_timer = 1
+        self.enemy_speed = 10
 
     def process(self, screen, dt):
         for enemy in self.enemies:
-            enemy.pos.y += enemy.speed
+            enemy.pos.y += self.enemy_speed
             pygame.draw.circle(screen, "Blue", enemy.pos, 40)
             if enemy.pos.y >= 2000:
                 self.enemies.remove(enemy)

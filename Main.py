@@ -10,9 +10,8 @@ clock = pygame.time.Clock()
 running = True
 dt = 0
 score = 0
-position = entity.Position(screen.get_width())
 print(pygame.key.get_repeat())
-player = entity.Player(screen.get_height() / 4 *3, entity.Position(screen.get_width()) )
+player = entity.Player(screen)
 hud = HUD.hud(str(score))
 enemy_handler = entity.EnemyHandler()
 
