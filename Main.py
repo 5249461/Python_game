@@ -11,7 +11,7 @@ running = True
 dt = 0
 score = 0
 print(pygame.key.get_repeat())
-player = entity.Player(screen)
+player = entity.Player()
 hud = HUD.hud(str(score))
 enemy_handler = entity.EnemyHandler()
 
@@ -33,7 +33,7 @@ while running:
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("purple")
     
-    player.process(screen)
+    player.process(screen,dt )
     hud.render(screen)
     enemy_handler.process(screen, dt)
 
