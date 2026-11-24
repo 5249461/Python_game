@@ -7,7 +7,7 @@ class interp:
         self.i = 0.
         self.interping = False
     
-    def set(self, old:float, new:float): 
+    def set(self, new:float, old:float): 
         self.old = old
         self.new = new
         self.i = 0

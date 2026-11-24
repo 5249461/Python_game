@@ -11,18 +11,20 @@ class Position:
         return Position.positions[index]
 
     def __init__(self) -> None:
-        self.pos = pygame.Vector2(Position.get(1), 810)
+        step = 1
+        self.step = step
+        self.pos = pygame.Vector2(Position.get(step), 810)
         self.interp = interp()
     def left(self):
-        if self.pos == 0:
+        if self.step == 0:
             return
-        self.interp.set(self.pos, self.pos-1)
-        self.pos -=1
+        self.step -=1
+        self.interp.set(Position.get(self.step), self.pos.x)
     def right(self):
-        if self.pos == 2:
+        if self.step == 2:
             return
-        self.interp.set(, self.pos+1)
-        self.pos +=1
+        self.step +=1
+        self.interp.set(Position.get(self.step), self.pos.x)
 
     
 
@@ -47,8 +49,9 @@ class Player:
         self.pos.right()
     def get_pos(self,dt ) -> pygame.Vector2:
         if self.pos.interp.interping:
-            return pygame.Vector2(Position.get(self.pos.pos), self.pos.y)
-        return pygame.Vector2(self.pos.interp.tick(dt))
+            return pygame.Vector2(self.pos.interp.tick(dt), self.pos.pos.y)
+        
+        return self.pos.pos
         
     
 
