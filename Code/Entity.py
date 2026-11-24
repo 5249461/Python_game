@@ -18,7 +18,7 @@ class Position:
     def left(self):
         if self.step == 0:
             return
-        self.step -=1
+        self.step -= 1
         self.interp.set(Position.get(self.step), self.pos.x)
     def right(self):
         if self.step == 2:
@@ -36,17 +36,14 @@ class Player:
         self.pos = Position()
 
     def process(self, screen,dt ):
-        pygame.draw.circle(screen, "red", self.get_pos(dt), 40)
+        self.pos.pos = self.get_pos(dt)
+        pygame.draw.circle(screen, "red", self.pos.pos, 40)
 
     def process_input(self, event):
             if event.key == pygame.K_a:
-                self.left()
+                self.pos.left()
             if event.key == pygame.K_d:
-                self.right()
-    def left(self):
-        self.pos.left()
-    def right(self):
-        self.pos.right()
+                self.pos.right()
     def get_pos(self,dt ) -> pygame.Vector2:
         if self.pos.interp.interping:
             return pygame.Vector2(self.pos.interp.tick(dt), self.pos.pos.y)

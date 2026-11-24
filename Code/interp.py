@@ -14,8 +14,9 @@ class interp:
         self.interping = True
 
     def tick(self, dt) -> float:
-        self.i += dt
+        self.i += dt*3
         if self.i >= 1:
+            self.interping = False
             return self.new
         return pygame.math.lerp(self.old, self.new, self.i)
 

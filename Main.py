@@ -31,7 +31,7 @@ while running:
 
 
     # fill the screen with a color to wipe away anything from last frame
-    screen.fill("purple")
+    screen.fill("gray")
     
     player.process(screen,dt )
     hud.render(screen)
